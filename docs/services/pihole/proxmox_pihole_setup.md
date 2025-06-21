@@ -1,4 +1,5 @@
 # Proxmox Pi-hole Setup (LXC) – With Explanations
+[Back to Pi-hole overview and rationale](config_notes.md)
 
 ---
 

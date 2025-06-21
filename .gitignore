@@ -1,0 +1,18 @@
+# Ignore OS and editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Python virtual environments (if used)
+venv/
+env/
+__pycache__/
+
+# MkDocs build output
+site/
+
+# Logs and temporary files
+*.log
+*.bak
+*.tmp
