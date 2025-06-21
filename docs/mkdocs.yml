@@ -1,0 +1,54 @@
+site_name: Homelab Docs
+site_url: https://tylerwkoontz.github.io/homelab-docs
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.instant
+    - navigation.sections
+    - navigation.tabs
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+nav:
+  - Home: index.md
+  - Infrastructure:
+      - Proxmox Setup: infrastructure/proxmox-setup.md
+  - Services:
+      - Pi-hole Setup: services/pihole/proxmox_pihole_setup.md
+      - Pi-hole Notes: services/pihole/config_notes.md
+  - Monitoring:
+      - Grafana Setup: monitoring/grafana_setup.md
+  - Guides:
+      - MkDocs Deploy Guide: guides/mkdocs_deploy_guide.md
+      - Workflow Guide: guides/workflow_guide.md
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - footnotes
+  - meta
+  - toc:
+      permalink: true
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Tylerwkoontz/homelab-docs
