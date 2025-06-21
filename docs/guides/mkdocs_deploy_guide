@@ -165,20 +165,34 @@ http://192.168.1.2:8000
 ---
 
 ## Step 6: Deploy to GitHub Pages
-
-Install the GitHub deploy plugin:
-
+### 6.1 Install the GitHub deploy plugin
+In your virtual environment:
 ```bash
 pip3 install mkdocs-material[gh-deploy]
 ```
 
-Then run:
-
+### 6.2 Deploy the site
+Build and push your documentation to the gh-pages branch of your GitHub repo:
 ```bash
 mkdocs gh-deploy
 ```
 
-This pushes a compiled version of your site to the `gh-pages` branch.
+When prompted for GitHub credentials:
+
+**Username**: your GitHub username (e.g., tylerwkoontz)
+
+**Password**: use a Personal Access Token (PAT) instead of your actual password.
+
+> ❗ GitHub no longer supports password authentication for Git over HTTPS. You must use a Personal Access Token (PAT) with at least the repo or public_repo scope enabled.
+
+### 6.3 (Optional) Cache your GitHub credentials
+To avoid re-entering your PAT every time:
+
+```bash
+git config --global credential.helper store
+# This saves your credentials in plaintext at ~/.git-credentials. Only use this on secure, personal systems.
+```
+
 
 ---
 
@@ -194,6 +208,34 @@ This pushes a compiled version of your site to the `gh-pages` branch.
 Your site will be live at:
 ```
 https://<username>.github.io/homelab-docs/
+```
+
+---
+
+## Step 8: Workflow for Updating Docs
+Here's how to maintain and update your site:
+
+### 1. Edit Locally with Live Preview
+Use MkDocs' live server to see changes in real-time:
+```bash
+mkdocs serve
+```
+View locally at http://192.168.1.2:8000
+
+### 2. Save and Push Changes to GitHub
+After editing markdown files or the config:
+```bash
+git add .
+git commit -m "Update docs or config"
+git push
+# This saves your edits to GitHub but does not publish them yet.
+```
+
+### 3. Deploy to GitHub Pages
+When you're ready to update your live site:
+```bash
+mkdocs gh-deploy
+# This builds your static site and pushes it to the gh-pages branch.
 ```
 
 ---
