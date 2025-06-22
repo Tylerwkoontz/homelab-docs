@@ -6,6 +6,10 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="Documentation for my homelab setup and services.">
+      
+      
+        <meta name="author" content="Tyler Koontz">
       
       
         <link rel="canonical" href="https://tylerwkoontz.github.io/homelab-docs/guides/mkdocs_workflow_guide/">
@@ -20,7 +24,7 @@
     
     
       
-        <title>Workflow Guide - Homelab Docs</title>
+        <title>Workflow Guide - homelab-docs</title>
       
     
     
@@ -86,7 +90,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Homelab Docs" class="md-header__button md-logo" aria-label="Homelab Docs" data-md-component="logo">
+    <a href="../.." title="homelab-docs" class="md-header__button md-logo" aria-label="homelab-docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -100,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Homelab Docs
+            homelab-docs
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -326,13 +330,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Homelab Docs" class="md-nav__button md-logo" aria-label="Homelab Docs" data-md-component="logo">
+    <a href="../.." title="homelab-docs" class="md-nav__button md-logo" aria-label="homelab-docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Homelab Docs
+    homelab-docs
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -911,9 +915,10 @@ Your prompt should change to <code>(mkdocs) user@pve1:~$</code></p>
 </code></pre></div>
 <p>View the site at:
 <a href="http://192.168.1.2:8000">http://192.168.1.2:8000</a></p>
-<blockquote>
-<p>❗ Your terminal will be locked while serving. Use a new tab to keep editing, or Ctrl+C to stop it.</p>
-</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Your terminal will be locked while serving. Use a new tab to keep editing, or Ctrl+C to stop it.</p>
+</div>
 <h3 id="6-save-and-commit-changes-to-git">6. Save and Commit Changes to Git<a class="headerlink" href="#6-save-and-commit-changes-to-git" title="Permanent link">&para;</a></h3>
 <p>After editing content:</p>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>add<span class="w"> </span>.
