@@ -1,4 +1,8 @@
-site_name: Homelab Docs
+site_name: homelab-docs
+site_description: Documentation for my homelab setup and services.
+site_author: Tyler Koontz
+site_version: 1.0.0
+site_repo: https://github.com/Tylerwkoontz/homelab-docs
 site_url: https://tylerwkoontz.github.io/homelab-docs
 
 theme:

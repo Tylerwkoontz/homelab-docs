@@ -67,7 +67,8 @@ mkdocs serve
 View the site at:
 http://192.168.1.2:8000
 
-> ❗ Your terminal will be locked while serving. Use a new tab to keep editing, or Ctrl+C to stop it.
+!!! warning
+    Your terminal will be locked while serving. Use a new tab to keep editing, or Ctrl+C to stop it.
 
 ### 6. Save and Commit Changes to Git
 After editing content:
