@@ -8,22 +8,28 @@
       
       
       
+        <link rel="canonical" href="https://tylerwkoontz.github.io/homelab-docs/infrastructure/proxmox_setup/">
       
       
+        <link rel="prev" href="../..">
       
-      <link rel="icon" href="/homelab-docs/assets/images/favicon.png">
+      
+        <link rel="next" href="../../services/pihole/proxmox_pihole_setup/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
-        <title>Homelab Docs</title>
+        <title>Proxmox Setup - Homelab Docs</title>
       
     
     
-      <link rel="stylesheet" href="/homelab-docs/assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
       
         
-        <link rel="stylesheet" href="/homelab-docs/assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -42,7 +48,7 @@
       
     
     
-    <script>__md_scope=new URL("/homelab-docs/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -67,6 +73,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#proxmox-setup-zfs-raid-configuration" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -77,7 +88,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/homelab-docs/." title="Homelab Docs" class="md-header__button md-logo" aria-label="Homelab Docs" data-md-component="logo">
+    <a href="../.." title="Homelab Docs" class="md-header__button md-logo" aria-label="Homelab Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -97,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Proxmox Setup
             
           </span>
         </div>
@@ -198,7 +209,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/homelab-docs/." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -215,11 +226,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="/homelab-docs/infrastructure/proxmox_setup/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
   
@@ -239,7 +252,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/homelab-docs/services/pihole/proxmox_pihole_setup/" class="md-tabs__link">
+        <a href="../../services/pihole/proxmox_pihole_setup/" class="md-tabs__link">
           
   
   
@@ -259,7 +272,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/homelab-docs/monitoring/grafana_setup/" class="md-tabs__link">
+        <a href="../../monitoring/grafana_setup/" class="md-tabs__link">
           
   
   
@@ -279,7 +292,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/homelab-docs/guides/mkdocs_deploy_guide/" class="md-tabs__link">
+        <a href="../../guides/mkdocs_deploy_guide/" class="md-tabs__link">
           
   
   
@@ -315,7 +328,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/homelab-docs/." title="Homelab Docs" class="md-nav__button md-logo" aria-label="Homelab Docs" data-md-component="logo">
+    <a href="../.." title="Homelab Docs" class="md-nav__button md-logo" aria-label="Homelab Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -333,7 +346,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/homelab-docs/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -352,26 +365,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -384,7 +402,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Infrastructure
@@ -395,10 +413,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/homelab-docs/infrastructure/proxmox_setup/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Proxmox Setup
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -409,6 +449,143 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-by-step-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step-by-Step Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step-by-Step Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-flash-proxmox-iso-to-usb" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Flash Proxmox ISO to USB
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-configure-bios-and-storage-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Configure BIOS and Storage Controller
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zfs-raid-1-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      ZFS RAID 1 Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ZFS RAID 1 Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-created-zfs-mirror-pool" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Created ZFS Mirror Pool
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zfs-automatic-snapshots" class="md-nav__link">
+    <span class="md-ellipsis">
+      ZFS Automatic Snapshots
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ZFS Automatic Snapshots">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tool-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tool Used
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-retention-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Default Retention Policy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notes
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -471,7 +648,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/homelab-docs/services/pihole/proxmox_pihole_setup/" class="md-nav__link">
+      <a href="../../services/pihole/proxmox_pihole_setup/" class="md-nav__link">
         
   
   
@@ -494,7 +671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/homelab-docs/services/pihole/config_notes/" class="md-nav__link">
+      <a href="../../services/pihole/config_notes/" class="md-nav__link">
         
   
   
@@ -567,7 +744,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/homelab-docs/monitoring/grafana_setup/" class="md-nav__link">
+      <a href="../../monitoring/grafana_setup/" class="md-nav__link">
         
   
   
@@ -640,7 +817,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/homelab-docs/guides/mkdocs_deploy_guide/" class="md-nav__link">
+      <a href="../../guides/mkdocs_deploy_guide/" class="md-nav__link">
         
   
   
@@ -663,7 +840,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/homelab-docs/guides/mkdocs_workflow_guide/" class="md-nav__link">
+      <a href="../../guides/mkdocs_workflow_guide/" class="md-nav__link">
         
   
   
@@ -698,8 +875,118 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+
+<h1 id="proxmox-setup-zfs-raid-configuration">Proxmox Setup &amp; ZFS RAID Configuration<a class="headerlink" href="#proxmox-setup-zfs-raid-configuration" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>This document outlines the installation and configuration of <code>pve1</code>, the primary Proxmox node in my homelab. It includes the setup of Proxmox VE 8.4.1 using a macOS-flashed USB, configuration of the Dell H730 Mini controller in HBA (IT) mode, and the deployment of a ZFS mirror (RAID 1) across two 2TB SAS drives. ZFS automatic snapshots have been enabled to provide versioned backups and rollback points.</p>
+<p>This setup prioritizes data integrity, service reliability, and future scalability. All steps are documented to ensure clarity.</p>
+<hr />
+<h2 id="system-summary">System Summary<a class="headerlink" href="#system-summary" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Node:</strong> pve1</li>
+<li><strong>Hardware:</strong> Dell PowerEdge R430</li>
+<li><strong>Drives:</strong> 2 × 2TB SAS</li>
+<li><strong>Proxmox Version:</strong> 8.4.1</li>
+<li><strong>Storage Type:</strong> ZFS Mirror (RAID 1)</li>
+</ul>
+<hr />
+<h2 id="step-by-step-installation">Step-by-Step Installation<a class="headerlink" href="#step-by-step-installation" title="Permanent link">&para;</a></h2>
+<h3 id="1-flash-proxmox-iso-to-usb">1. Flash Proxmox ISO to USB<a class="headerlink" href="#1-flash-proxmox-iso-to-usb" title="Permanent link">&para;</a></h3>
+<p>Used macOS terminal tools instead of GUI software:
+<div class="highlight"><pre><span></span><code><span class="c1"># Convert the ISO to a raw disk image format (.dmg) suitable for writing to USB</span>
+hdiutil<span class="w"> </span>convert<span class="w"> </span>-format<span class="w"> </span>UDRW<span class="w"> </span>-o<span class="w"> </span>proxmox-ve_8.4-1.dmg<span class="w"> </span>~/Downloads/proxmox-ve_8.4-1.iso
+
+<span class="c1"># List all disks to identify the USB drive (e.g., /dev/disk2)</span>
+diskutil<span class="w"> </span>list
+
+<span class="c1"># Unmount the USB drive so it can be written to directly</span>
+diskutil<span class="w"> </span>unmountDisk<span class="w"> </span>/dev/disk2
+
+<span class="c1"># Write the .dmg image to the USB drive using raw access (note the &#39;r&#39; in rdisk2 for faster write)</span>
+sudo<span class="w"> </span>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>proxmox-ve_8.4-1.dmg<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/dev/rdisk2<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>1m
+</code></pre></div>
+<strong>Why:</strong> Using the macOS CLI gives more control over the flashing process, avoids GUI tools, and allows installing Proxmox directly from a clean bootable USB. Writing the ISO to USB ensures the OS lives on its own device, keeping the primary drives available for dedicated ZFS storage.</p>
+<h3 id="2-configure-bios-and-storage-controller">2. Configure BIOS and Storage Controller<a class="headerlink" href="#2-configure-bios-and-storage-controller" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Set USB as the primary boot device to ensure the Proxmox installer loads first.</li>
+<li>Configured the H730 Mini RAID controller into <strong>HBA (IT) mode</strong> to allow ZFS direct access to raw disks.</li>
+<li>Verified both 2TB drives were exposed individually (non-RAID) to the Proxmox installer.</li>
+</ul>
+<p><strong>Why:</strong> ZFS requires direct access to physical disks for redundancy and integrity features. HBA mode bypasses the RAID logic, making the drives visible as raw block devices to the OS without removing the controller.</p>
+<hr />
+<h2 id="zfs-raid-1-setup">ZFS RAID 1 Setup<a class="headerlink" href="#zfs-raid-1-setup" title="Permanent link">&para;</a></h2>
+<h3 id="1-created-zfs-mirror-pool">1. Created ZFS Mirror Pool<a class="headerlink" href="#1-created-zfs-mirror-pool" title="Permanent link">&para;</a></h3>
+<p>Used the Proxmox web UI during installation:
+- Selected <strong>ZFS RAID 1 (mirror)</strong> using <code>/dev/sda</code> and <code>/dev/sdb</code>
+- Accepted the <strong>default pool name</strong>: <code>rpool</code></p>
+<p><strong>ZFS provides:</strong>
+- <strong>Built-in redundancy</strong> via mirroring (RAID 1)
+- <strong>Data integrity</strong> through checksumming and self-healing
+- <strong>Efficient snapshots</strong> for backups and rollback
+- <strong>SMART integration</strong> to monitor drive health and predict failure (<code>zpool status</code> and <code>smartctl</code> both supported natively)</p>
+<p><strong>Note to self (future plan):</strong><br />
+Once the remaining 6 drives are installed, plan to:
+- Expand to a <strong>RAID-Z2 or multiple mirror vdevs</strong>
+- Create a <strong>separate storage pool</strong> for high-capacity or tiered storage use
+- Consider setting up <strong>ZFS alerts</strong> and monitoring via Grafana or Prometheus</p>
+<hr />
+<h2 id="zfs-automatic-snapshots">ZFS Automatic Snapshots<a class="headerlink" href="#zfs-automatic-snapshots" title="Permanent link">&para;</a></h2>
+<h3 id="tool-used">Tool Used<a class="headerlink" href="#tool-used" title="Permanent link">&para;</a></h3>
+<p>Installed <code>zfs-auto-snapshot</code>, which adds automated, scheduled snapshots using system cron jobs.
+<div class="highlight"><pre><span></span><code>apt<span class="w"> </span>update
+apt<span class="w"> </span>install<span class="w"> </span>zfs-auto-snapshot<span class="w"> </span>-y
+</code></pre></div></p>
+<h3 id="default-retention-policy">Default Retention Policy<a class="headerlink" href="#default-retention-policy" title="Permanent link">&para;</a></h3>
+<p>Once installed, snapshots are created and rotated automatically:
+- Hourly: 24 retained
+- Daily: 7 retained
+- Weekly: 4 retained
+- Monthly: 12 retained</p>
+<p>Snapshots are stored within the same dataset and do not consume extra space unless data changes (copy-on-write).</p>
+<p><strong>Verify Snapshots</strong>
+To view existing snapshots:
+<div class="highlight"><pre><span></span><code>zfs<span class="w"> </span>list<span class="w"> </span>-t<span class="w"> </span>snapshot
+</code></pre></div>
+<strong>Why It Matters</strong>
+- Provides automatic rollback points for VMs and datasets
+- Enables rapid recovery from misconfiguration, corruption, or deletion
+- Integrates with ZFS-native features like rollback and replication
+- Supports SMART-based storage and future offsite backup plans</p>
+<p><strong>Note to Self</strong>
+- Plan to integrate snapshot monitoring with Grafana or Prometheus
+- Future: Automate off-node snapshot syncing for cold storage redundancy</p>
+<p><strong>Optional:</strong> Exclude specific datasets with:
+<div class="highlight"><pre><span></span><code>zfs<span class="w"> </span><span class="nb">set</span><span class="w"> </span>com.sun:auto-snapshot<span class="o">=</span><span class="nb">false</span><span class="w"> </span>rpool/data/iso-store
+</code></pre></div></p>
+<hr />
+<h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Proxmox 8.4.1 was installed via a bootable USB created using macOS CLI tools (<code>dd</code>, <code>hdiutil</code>) for maximum control and precision.</li>
+<li>The Dell H730 Mini controller was left installed but switched to <strong>HBA (IT) mode</strong>, allowing Proxmox/ZFS direct access to raw disks.</li>
+<li>No hardware RAID is used — <strong>ZFS software RAID 1 (mirror)</strong> provides redundancy, integrity checking, and snapshot capability.</li>
+<li>Automatic snapshots (<code>zfs-auto-snapshot</code>) are scheduled hourly, daily, weekly, and monthly using cron, enabling lightweight rollback and recovery.</li>
+<li><strong>SMART monitoring</strong> is natively supported in ZFS; future plans include logging and alerting via Grafana/Prometheus stack.</li>
+<li>ZFS snapshots are copy-on-write and live within the same datasets, requiring minimal space unless data changes.</li>
+<li>All configurations were documented from the beginning to ensure traceability, reproducibility, and showcase-level professionalism.</li>
+<li>Plans to expand storage to <strong>RAID-Z2 or multiple vdev mirrors</strong> with six additional drives for higher capacity and resilience.</li>
+<li>Future snapshot syncing and backup strategy will include <strong>off-node replication</strong> or <strong>cold storage</strong>, improving disaster recovery posture.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -750,10 +1037,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "/homelab-docs/", "features": ["navigation.instant", "navigation.sections", "navigation.tabs", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "/homelab-docs/assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.sections", "navigation.tabs", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="/homelab-docs/assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
     
   </body>

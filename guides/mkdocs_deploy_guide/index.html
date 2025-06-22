@@ -1,0 +1,1349 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://tylerwkoontz.github.io/homelab-docs/guides/mkdocs_deploy_guide/">
+      
+      
+        <link rel="prev" href="../../monitoring/grafana_setup/">
+      
+      
+        <link rel="next" href="../mkdocs_workflow_guide/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>MkDocs Deploy Guide - Homelab Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#deploying-mkdocs-with-material-theme" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Homelab Docs" class="md-header__button md-logo" aria-label="Homelab Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Homelab Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              MkDocs Deploy Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../infrastructure/proxmox_setup/" class="md-tabs__link">
+          
+  
+  
+  Infrastructure
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../services/pihole/proxmox_pihole_setup/" class="md-tabs__link">
+          
+  
+  
+  Services
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../monitoring/grafana_setup/" class="md-tabs__link">
+          
+  
+  
+  Monitoring
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Homelab Docs" class="md-nav__button md-logo" aria-label="Homelab Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Homelab Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Infrastructure
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Infrastructure
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infrastructure/proxmox_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Proxmox Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Services
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Services
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/pihole/proxmox_pihole_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pi-hole Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/pihole/config_notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pi-hole Notes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Monitoring
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Monitoring
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../monitoring/grafana_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Grafana Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Guides
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    MkDocs Deploy Guide
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    MkDocs Deploy Guide
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-install-mkdocs-and-material-theme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Install MkDocs and Material Theme
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Install MkDocs and Material Theme">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-prepare-python-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Prepare Python Environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-create-and-activate-virtual-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Create and Activate Virtual Environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-install-mkdocs-and-material-theme" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Install MkDocs and Material Theme
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reminder" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reminder:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-clone-your-github-repo-on-pve1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Clone Your GitHub Repo on pve1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-initialize-or-organize-the-mkdocs-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Initialize or Organize the MkDocs Project
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3: Initialize or Organize the MkDocs Project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-if-you-already-have-a-docs-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      A) If You Already Have a /docs/ Directory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-if-youre-starting-from-scratch" class="md-nav__link">
+    <span class="md-ellipsis">
+      B) If You're Starting from Scratch
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-configure-the-material-theme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Configure the Material Theme
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-preview-the-site-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5: Preview the Site Locally
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-deploy-to-github-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 6: Deploy to GitHub Pages
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 6: Deploy to GitHub Pages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-install-the-github-deploy-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Install the GitHub deploy plugin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-deploy-the-site" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Deploy the site
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-optional-cache-your-github-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 (Optional) Cache your GitHub credentials
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-enable-github-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 7: Enable GitHub Pages
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-workflow-for-updating-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 8: Workflow for Updating Docs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 8: Workflow for Updating Docs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-edit-locally-with-live-preview" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Edit Locally with Live Preview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-save-and-push-changes-to-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Save and Push Changes to GitHub
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-deploy-to-github-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Deploy to GitHub Pages
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mkdocs_workflow_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Workflow Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="deploying-mkdocs-with-material-theme">Deploying MkDocs with Material Theme<a class="headerlink" href="#deploying-mkdocs-with-material-theme" title="Permanent link">&para;</a></h1>
+<p>This guide explains how to deploy a professional, searchable documentation site using <strong>MkDocs with the Material theme</strong>, hosted on GitHub Pages. It is intended for use directly on <code>pve1</code> or your local development system.</p>
+<hr />
+<h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Python 3</li>
+<li>pip</li>
+<li>A GitHub repo: <a href="https://github.com/Tylerwkoontz/homelab-docs">https://github.com/Tylerwkoontz/homelab-docs</a></li>
+</ul>
+<hr />
+<h2 id="step-1-install-mkdocs-and-material-theme">Step 1: Install MkDocs and Material Theme<a class="headerlink" href="#step-1-install-mkdocs-and-material-theme" title="Permanent link">&para;</a></h2>
+<p>Due to recent Debian/Ubuntu changes, system-wide pip installs are blocked to protect the OS. We’ll use a Python virtual environment to install MkDocs cleanly.</p>
+<h3 id="1-prepare-python-environment">1. Prepare Python Environment<a class="headerlink" href="#1-prepare-python-environment" title="Permanent link">&para;</a></h3>
+<p>Install the required packages:
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-full<span class="w"> </span>python3-venv<span class="w"> </span>python3.11-venv<span class="w"> </span>-y
+</code></pre></div></p>
+<blockquote>
+<p><code>python3-venv</code> and <code>python3.11-venv</code> provide the tools needed for creating Python virtual environments.
+<code>python3-full</code> ensures you have all standard Python modules, including <code>ensurepip</code>, required to bootstrap <code>pip</code> inside virtual environments</p>
+</blockquote>
+<h3 id="2-create-and-activate-virtual-environment">2. Create and Activate Virtual Environment<a class="headerlink" href="#2-create-and-activate-virtual-environment" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code><span class="c1"># (Optional) Create a folder to organize all your venvs</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>~/venvs
+
+<span class="c1"># Create a virtual environment specifically for MkDocs</span>
+python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>~/venvs/mkdocs
+
+<span class="c1"># Activate the virtual environment</span>
+<span class="nb">source</span><span class="w"> </span>~/venvs/mkdocs/bin/activate
+</code></pre></div>
+You’ll know it's active when your prompt looks like this:
+<div class="highlight"><pre><span></span><code><span class="o">(</span>mkdocs<span class="o">)</span><span class="w"> </span>user@pve1:~$
+</code></pre></div></p>
+<h3 id="3-install-mkdocs-and-material-theme">3. Install MkDocs and Material Theme<a class="headerlink" href="#3-install-mkdocs-and-material-theme" title="Permanent link">&para;</a></h3>
+<p>Inside the virtual environment:</p>
+<p><div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>mkdocs<span class="w"> </span>mkdocs-material
+</code></pre></div>
+Then verify:
+<div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>--version
+</code></pre></div></p>
+<blockquote>
+<h3 id="reminder">Reminder:<a class="headerlink" href="#reminder" title="Permanent link">&para;</a></h3>
+<p>Each time you want to edit or serve your docs:</p>
+<p><div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>~/venvs/mkdocs/bin/activate
+</code></pre></div>
+To exit:</p>
+<div class="highlight"><pre><span></span><code>deactivate
+</code></pre></div>
+</blockquote>
+<hr />
+<h2 id="step-2-clone-your-github-repo-on-pve1">Step 2: Clone Your GitHub Repo on pve1<a class="headerlink" href="#step-2-clone-your-github-repo-on-pve1" title="Permanent link">&para;</a></h2>
+<p>On <code>pve1</code>, download your project repo:</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>~/Projects<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/Projects
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/&lt;username&gt;/homelab-docs.git
+<span class="nb">cd</span><span class="w"> </span>homelab-docs
+</code></pre></div>
+<hr />
+<h2 id="step-3-initialize-or-organize-the-mkdocs-project">Step 3: Initialize or Organize the MkDocs Project<a class="headerlink" href="#step-3-initialize-or-organize-the-mkdocs-project" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Choose one of the following based on your situation.</p>
+</blockquote>
+<h3 id="a-if-you-already-have-a-docs-directory">A) If You Already Have a /docs/ Directory<a class="headerlink" href="#a-if-you-already-have-a-docs-directory" title="Permanent link">&para;</a></h3>
+<p>No need to run mkdocs new .. Just ensure your folder layout follows MkDocs structure:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create the required folder structure inside the /docs directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>docs/infrastructure<span class="w"> </span>docs/services/pihole<span class="w"> </span>docs/monitoring<span class="w"> </span>docs/guides
+
+<span class="c1"># Move Proxmox or infrastructure-related markdown files into the correct folder</span>
+mv<span class="w"> </span>infrastructure/*.md<span class="w"> </span>docs/infrastructure/<span class="w"> </span><span class="m">2</span>&gt;/dev/null
+
+<span class="c1"># Move Pi-hole-related markdown files into the services/pihole directory</span>
+mv<span class="w"> </span>services/pihole/*.md<span class="w"> </span>docs/services/pihole/<span class="w"> </span><span class="m">2</span>&gt;/dev/null
+
+<span class="c1"># Move Grafana or other monitoring-related markdown files</span>
+mv<span class="w"> </span>monitoring/*.md<span class="w"> </span>docs/monitoring/<span class="w"> </span><span class="m">2</span>&gt;/dev/null
+
+<span class="c1"># Move general guide markdown files into the guides folder</span>
+mv<span class="w"> </span>guides/*.md<span class="w"> </span>docs/guides/<span class="w"> </span><span class="m">2</span>&gt;/dev/null
+
+<span class="c1"># Use the main README as the homepage of your MkDocs site</span>
+mv<span class="w"> </span>README.md<span class="w"> </span>docs/index.md
+</code></pre></div>
+<h3 id="b-if-youre-starting-from-scratch">B) If You're Starting from Scratch<a class="headerlink" href="#b-if-youre-starting-from-scratch" title="Permanent link">&para;</a></h3>
+<p>Use <code>mkdocs new .</code> to initialize a new project structure:</p>
+<p><div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>new<span class="w"> </span>.
+</code></pre></div>
+This creates:</p>
+<div class="highlight"><pre><span></span><code>mkdocs.yml        # Site configuration
+docs/
+└── index.md      # Default homepage
+</code></pre></div>
+<p>You can then add your custom folders like:</p>
+<p><div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>docs/infrastructure<span class="w"> </span>docs/services/pihole<span class="w"> </span>docs/monitoring<span class="w"> </span>docs/guides
+</code></pre></div>
+And move your markdown files accordingly.</p>
+<hr />
+<h2 id="step-4-configure-the-material-theme">Step 4: Configure the Material Theme<a class="headerlink" href="#step-4-configure-the-material-theme" title="Permanent link">&para;</a></h2>
+<p>Edit <code>mkdocs.yml</code>:</p>
+<div class="highlight"><pre><span></span><code>site_name: Homelab Docs
+site_url: http://192.168.1.2:8000
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - Infrastructure:
+      - Proxmox Setup: infrastructure/proxmox_setup.md
+  - Services:
+      - Pi-hole: services/pihole/config_notes.md
+  - Monitoring:
+      - Grafana Setup: monitoring/grafana_setup.md
+</code></pre></div>
+<hr />
+<h2 id="step-5-preview-the-site-locally">Step 5: Preview the Site Locally<a class="headerlink" href="#step-5-preview-the-site-locally" title="Permanent link">&para;</a></h2>
+<p>Start the live server:</p>
+<div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>serve
+</code></pre></div>
+<p>Then open in your browser:
+<div class="highlight"><pre><span></span><code>http://192.168.1.2:8000
+</code></pre></div></p>
+<hr />
+<h2 id="step-6-deploy-to-github-pages">Step 6: Deploy to GitHub Pages<a class="headerlink" href="#step-6-deploy-to-github-pages" title="Permanent link">&para;</a></h2>
+<h3 id="61-install-the-github-deploy-plugin">6.1 Install the GitHub deploy plugin<a class="headerlink" href="#61-install-the-github-deploy-plugin" title="Permanent link">&para;</a></h3>
+<p>In your virtual environment:
+<div class="highlight"><pre><span></span><code>pip3<span class="w"> </span>install<span class="w"> </span>mkdocs-material<span class="o">[</span>gh-deploy<span class="o">]</span>
+</code></pre></div></p>
+<h3 id="62-deploy-the-site">6.2 Deploy the site<a class="headerlink" href="#62-deploy-the-site" title="Permanent link">&para;</a></h3>
+<p>Build and push your documentation to the gh-pages branch of your GitHub repo:
+<div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>gh-deploy
+</code></pre></div></p>
+<p>When prompted for GitHub credentials:</p>
+<p><strong>Username</strong>: your GitHub username (e.g., tylerwkoontz)</p>
+<p><strong>Password</strong>: use a Personal Access Token (PAT) instead of your actual password.</p>
+<blockquote>
+<p>❗ GitHub no longer supports password authentication for Git over HTTPS. You must use a Personal Access Token (PAT) with at least the repo or public_repo scope enabled.</p>
+</blockquote>
+<h3 id="63-optional-cache-your-github-credentials">6.3 (Optional) Cache your GitHub credentials<a class="headerlink" href="#63-optional-cache-your-github-credentials" title="Permanent link">&para;</a></h3>
+<p>To avoid re-entering your PAT every time:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>credential.helper<span class="w"> </span>store
+<span class="c1"># This saves your credentials in plaintext at ~/.git-credentials. Only use this on secure, personal systems.</span>
+</code></pre></div>
+<hr />
+<h2 id="step-7-enable-github-pages">Step 7: Enable GitHub Pages<a class="headerlink" href="#step-7-enable-github-pages" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Go to your repo on GitHub: <code>https://github.com/&lt;username&gt;/homelab-docs</code></li>
+<li>Navigate to: <strong>Settings → Pages</strong></li>
+<li>Under <strong>Source</strong>, choose:</li>
+<li>Branch: <code>gh-pages</code></li>
+<li>Folder: <code>/ (root)</code></li>
+<li>Click <strong>Save</strong></li>
+</ol>
+<p>Your site will be live at:
+<div class="highlight"><pre><span></span><code>https://&lt;username&gt;.github.io/homelab-docs/
+</code></pre></div></p>
+<hr />
+<h2 id="step-8-workflow-for-updating-docs">Step 8: Workflow for Updating Docs<a class="headerlink" href="#step-8-workflow-for-updating-docs" title="Permanent link">&para;</a></h2>
+<p>Here's how to maintain and update your site:</p>
+<h3 id="1-edit-locally-with-live-preview">1. Edit Locally with Live Preview<a class="headerlink" href="#1-edit-locally-with-live-preview" title="Permanent link">&para;</a></h3>
+<p>Use MkDocs' live server to see changes in real-time:
+<div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>serve
+</code></pre></div>
+View locally at <a href="http://192.168.1.2:8000">http://192.168.1.2:8000</a></p>
+<h3 id="2-save-and-push-changes-to-github">2. Save and Push Changes to GitHub<a class="headerlink" href="#2-save-and-push-changes-to-github" title="Permanent link">&para;</a></h3>
+<p>After editing markdown files or the config:
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Update docs or config&quot;</span>
+git<span class="w"> </span>push
+<span class="c1"># This saves your edits to GitHub but does not publish them yet.</span>
+</code></pre></div></p>
+<h3 id="3-deploy-to-github-pages">3. Deploy to GitHub Pages<a class="headerlink" href="#3-deploy-to-github-pages" title="Permanent link">&para;</a></h3>
+<p>When you're ready to update your live site:
+<div class="highlight"><pre><span></span><code>mkdocs<span class="w"> </span>gh-deploy
+<span class="c1"># This builds your static site and pushes it to the gh-pages branch.</span>
+</code></pre></div></p>
+<hr />
+<h1 id="optional-enhancements">Optional Enhancements<a class="headerlink" href="#optional-enhancements" title="Permanent link">&para;</a></h1>
+<p>Take your MkDocs site to the next level with these enhancements:</p>
+<hr />
+<h2 id="full-text-search-built-in">Full-Text Search (Built-In)<a class="headerlink" href="#full-text-search-built-in" title="Permanent link">&para;</a></h2>
+<p>No setup required — Material for MkDocs includes a client-side search engine by default.</p>
+<p><strong>What it does:</strong>
+- Instantly searches page titles and content
+- Provides dropdown suggestions as you type
+- Works offline — no external dependencies</p>
+<hr />
+<h2 id="custom-logo-and-favicon">Custom Logo and Favicon<a class="headerlink" href="#custom-logo-and-favicon" title="Permanent link">&para;</a></h2>
+<p>Customize your site branding:
+<div class="highlight"><pre><span></span><code>theme:
+  name: material
+  logo: images/logo.png         # Appears in the upper-left corner
+  favicon: images/favicon.ico   # Appears in browser tab
+</code></pre></div>
+<strong>What it does:</strong>
+- Gives your docs a personalized and professional look
+- Reinforces branding, especially if used for public or client-facing projects</p>
+<p><strong>Place the image files in:</strong>
+<div class="highlight"><pre><span></span><code>docs/images/logo.png
+docs/images/favicon.ico
+</code></pre></div></p>
+<hr />
+<h2 id="structure-long-pages-with-headings">Structure Long Pages with Headings<a class="headerlink" href="#structure-long-pages-with-headings" title="Permanent link">&para;</a></h2>
+<p>Use markdown headers to divide content:
+<div class="highlight"><pre><span></span><code><span class="gh"># H1 - Top-level title</span>
+<span class="gu">## H2 - Section</span>
+<span class="gu">### H3 - Subsection</span>
+</code></pre></div>
+<strong>What it does:</strong>
+- Creates an auto-generated sidebar TOC (Table of Contents)
+- Improves readability and navigation
+- Helps readers scan content quickly</p>
+<hr />
+<h2 id="use-checklists-for-task-tracking">Use Checklists for Task Tracking<a class="headerlink" href="#use-checklists-for-task-tracking" title="Permanent link">&para;</a></h2>
+<p>Use GitHub-style task lists:</p>
+<p><div class="highlight"><pre><span></span><code><span class="k">- [x]</span> Install MkDocs
+<span class="k">- [ ]</span> Configure theme
+<span class="k">- [ ]</span> Write documentation
+</code></pre></div>
+<strong>What it does:</strong>
+- Makes setup or troubleshooting guides interactive
+- Can serve as live checklists for system setup, deployments, etc.</p>
+<hr />
+<h2 id="use-tables-for-data-presentation">Use Tables for Data Presentation<a class="headerlink" href="#use-tables-for-data-presentation" title="Permanent link">&para;</a></h2>
+<p>Organize comparisons or structured info:</p>
+<div class="highlight"><pre><span></span><code>| Feature       | Enabled | Notes                     |
+|---------------|---------|---------------------------|
+| Snapshots     | ✅       | ZFS hourly, daily, weekly |
+| Monitoring    | ❌       | Grafana setup pending     |
+</code></pre></div>
+<p><strong>What it does:</strong>
+- Makes dense information easier to scan
+- Adds clarity to service lists, features, or status reports</p>
+<hr />
+<h2 id="enable-dark-mode-toggle">Enable Dark Mode Toggle<a class="headerlink" href="#enable-dark-mode-toggle" title="Permanent link">&para;</a></h2>
+<p>Material supports built-in light/dark theme switching:
+<div class="highlight"><pre><span></span><code><span class="nt">theme</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">material</span>
+<span class="w">  </span><span class="nt">palette</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">media</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;(prefers-color-scheme:</span><span class="nv"> </span><span class="s">light)&quot;</span>
+<span class="w">      </span><span class="nt">scheme</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<span class="w">      </span><span class="nt">primary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">indigo</span>
+<span class="w">      </span><span class="nt">accent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">indigo</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">media</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;(prefers-color-scheme:</span><span class="nv"> </span><span class="s">dark)&quot;</span>
+<span class="w">      </span><span class="nt">scheme</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">slate</span>
+<span class="w">      </span><span class="nt">primary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">indigo</span>
+<span class="w">      </span><span class="nt">accent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">indigo</span>
+</code></pre></div>
+<strong>What it does:</strong>
+- Automatically adapts to system dark/light mode
+- Adds a toggle button to the header</p>
+<hr />
+<h2 id="add-a-custom-404-page">Add a Custom 404 Page<a class="headerlink" href="#add-a-custom-404-page" title="Permanent link">&para;</a></h2>
+<p>Create a helpful error page:
+<div class="highlight"><pre><span></span><code>touch<span class="w"> </span>docs/404.md
+</code></pre></div>
+<strong>What it does:</strong>
+- Improves user experience when a page is missing
+- Prevents confusion or dead ends in navigation</p>
+<hr />
+<h2 id="add-plugins-advanced">Add Plugins (Advanced)<a class="headerlink" href="#add-plugins-advanced" title="Permanent link">&para;</a></h2>
+<p>Extend MkDocs with features like:</p>
+<p><code>mkdocs-awesome-pages-plugin:</code> Custom sort nav order</p>
+<p><code>mkdocs-git-revision-date-localized-plugin:</code> Show last updated timestamp</p>
+<p><code>mkdocs-minify-plugin:</code> Reduce page size for faster loads</p>
+<p><strong>What they do:</strong>
+Enhance control, performance, and versioning in large documentation sets.</p>
+<hr />
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Install MkDocs</td>
+<td><code>pip3 install mkdocs mkdocs-material</code></td>
+</tr>
+<tr>
+<td>Clone repo</td>
+<td><code>git clone https://github.com/Tylerwkoontz/homelab-docs.git</code></td>
+</tr>
+<tr>
+<td>Create project</td>
+<td><code>mkdocs new .</code> or manually organize</td>
+</tr>
+<tr>
+<td>Preview locally</td>
+<td><code>mkdocs serve</code></td>
+</tr>
+<tr>
+<td>Deploy</td>
+<td><code>mkdocs gh-deploy</code></td>
+</tr>
+<tr>
+<td>Live site</td>
+<td><code>https://&lt;username&gt;.github.io/homelab-docs/</code></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Tylerwkoontz/homelab-docs" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.sections", "navigation.tabs", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
