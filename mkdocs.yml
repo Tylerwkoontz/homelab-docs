@@ -17,6 +17,15 @@ theme:
     - scheme: default
       primary: indigo
       accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
   font:
     text: Roboto
     code: Roboto Mono
@@ -24,7 +33,7 @@ theme:
 nav:
   - Home: index.md
   - Infrastructure:
-      - Proxmox Setup: infrastructure/proxmox-setup.md
+      - Proxmox Setup: infrastructure/proxmox_setup.md
   - Services:
       - Pi-hole Setup: services/pihole/proxmox_pihole_setup.md
       - Pi-hole Notes: services/pihole/config_notes.md
@@ -32,7 +41,7 @@ nav:
       - Grafana Setup: monitoring/grafana_setup.md
   - Guides:
       - MkDocs Deploy Guide: guides/mkdocs_deploy_guide.md
-      - Workflow Guide: guides/workflow_guide.md
+      - Workflow Guide: guides/mkdocs_workflow_guide.md
 
 markdown_extensions:
   - admonition
