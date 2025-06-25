@@ -12,28 +12,28 @@
         <meta name="author" content="Tyler Koontz">
       
       
-        <link rel="canonical" href="https://tylerwkoontz.github.io/homelab-docs/services/pihole/proxmox_pihole_setup/">
+        <link rel="canonical" href="https://tylerwkoontz.github.io/homelab-docs/infrastructure/cisco2960_setup/">
       
       
-        <link rel="prev" href="../../../infrastructure/cisco2960_setup/">
+        <link rel="prev" href="../proxmox_setup/">
       
       
-        <link rel="next" href="../config_notes/">
+        <link rel="next" href="../../services/pihole/proxmox_pihole_setup/">
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
-        <title>Pi-hole Setup - homelab-docs</title>
+        <title>Cisco 2960 Switch Setup - homelab-docs</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -52,7 +52,7 @@
       
     
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#proxmox-pi-hole-setup-lxc-with-explanations" class="md-skip">
+        <a href="#cisco-2960-homelab-switch-setup-ios-upgrade-lan-base-with-ssh" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="homelab-docs" class="md-header__button md-logo" aria-label="homelab-docs" data-md-component="logo">
+    <a href="../.." title="homelab-docs" class="md-header__button md-logo" aria-label="homelab-docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Pi-hole Setup
+              Cisco 2960 Switch Setup
             
           </span>
         </div>
@@ -213,7 +213,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -230,11 +230,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../infrastructure/proxmox_setup/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../proxmox_setup/" class="md-tabs__link">
           
   
   
@@ -250,13 +252,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../services/pihole/proxmox_pihole_setup/" class="md-tabs__link">
           
   
   
@@ -276,7 +276,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../monitoring/grafana_setup/" class="md-tabs__link">
+        <a href="../../monitoring/grafana_setup/" class="md-tabs__link">
           
   
   
@@ -296,7 +296,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../guides/mkdocs_deploy_guide/" class="md-tabs__link">
+        <a href="../../guides/mkdocs_deploy_guide/" class="md-tabs__link">
           
   
   
@@ -332,7 +332,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="homelab-docs" class="md-nav__button md-logo" aria-label="homelab-docs" data-md-component="logo">
+    <a href="../.." title="homelab-docs" class="md-nav__button md-logo" aria-label="homelab-docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -350,7 +350,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -361,102 +361,6 @@
   
 
       </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    Infrastructure
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2">
-            <span class="md-nav__icon md-icon"></span>
-            Infrastructure
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../infrastructure/proxmox_setup/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Proxmox Setup
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../infrastructure/cisco2960_setup/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Cisco 2960 Switch Setup
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -486,15 +390,15 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
   <span class="md-ellipsis">
-    Services
+    Infrastructure
     
   </span>
   
@@ -502,12 +406,35 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
-            Services
+            Infrastructure
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proxmox_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Proxmox Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -530,7 +457,7 @@
   
   
   <span class="md-ellipsis">
-    Pi-hole Setup
+    Cisco 2960 Switch Setup
     
   </span>
   
@@ -543,7 +470,7 @@
   
   
   <span class="md-ellipsis">
-    Pi-hole Setup
+    Cisco 2960 Switch Setup
     
   </span>
   
@@ -566,82 +493,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-download-a-base-lxc-template" class="md-nav__link">
+  <a href="#switch-model" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Download a Base LXC Template
+      Switch Model
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-create-an-lxc-container" class="md-nav__link">
+  <a href="#final-switch-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Create an LXC Container
+      Final Switch Configuration
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-set-static-ip-recommended" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. Set Static IP (Recommended)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-install-pi-hole" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Install Pi-hole
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-set-web-ui-password" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. Set Web UI Password
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-access-web-interface" class="md-nav__link">
-    <span class="md-ellipsis">
-      6. Access Web Interface
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#7-configure-router-to-use-pi-hole" class="md-nav__link">
-    <span class="md-ellipsis">
-      7. Configure Router to Use Pi-hole
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="7. Configure Router to Use Pi-hole">
+    <nav class="md-nav" aria-label="Final Switch Configuration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#option-a-dhcp-dns" class="md-nav__link">
+  <a href="#user-ssh-access" class="md-nav__link">
     <span class="md-ellipsis">
-      Option A – DHCP DNS:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#option-b-static-dns-per-device" class="md-nav__link">
-    <span class="md-ellipsis">
-      Option B – Static DNS per device
+      User + SSH Access
     </span>
   </a>
   
@@ -653,36 +526,78 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#8-secure-and-harden" class="md-nav__link">
+  <a href="#ios-upgrade-process-summary" class="md-nav__link">
     <span class="md-ellipsis">
-      8. Secure and Harden
+      🚀 IOS Upgrade Process Summary
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 IOS Upgrade Process Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-download-new-ios" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. ✅ Download New IOS
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#9-add-fail2ban-optional" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#2-start-macos-tftp-server" class="md-nav__link">
     <span class="md-ellipsis">
-      9. Add Fail2Ban (Optional)
+      2. 🛠 Start macOS TFTP Server
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#10-test-pi-hole" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#3-assign-ip-to-switch-enable-ports" class="md-nav__link">
     <span class="md-ellipsis">
-      10. Test Pi-hole
+      3. 📡 Assign IP to Switch + Enable Ports
     </span>
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#4-transfer-ios-from-mac-to-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 📤 Transfer IOS from Mac to Switch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-set-boot-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 🧭 Set Boot Image
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-reload-and-verify" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 🔄 Reload and Verify
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#summary-table" class="md-nav__link">
+  <a href="#post-upgrade-status" class="md-nav__link">
     <span class="md-ellipsis">
-      📋 Summary Table
+      ✅ Post-Upgrade Status
     </span>
   </a>
   
@@ -697,6 +612,56 @@
 
               
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Services
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Services
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
               
                 
   
@@ -704,7 +669,30 @@
   
   
     <li class="md-nav__item">
-      <a href="../config_notes/" class="md-nav__link">
+      <a href="../../services/pihole/proxmox_pihole_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pi-hole Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/pihole/config_notes/" class="md-nav__link">
         
   
   
@@ -777,7 +765,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../monitoring/grafana_setup/" class="md-nav__link">
+      <a href="../../monitoring/grafana_setup/" class="md-nav__link">
         
   
   
@@ -850,7 +838,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../guides/mkdocs_deploy_guide/" class="md-nav__link">
+      <a href="../../guides/mkdocs_deploy_guide/" class="md-nav__link">
         
   
   
@@ -873,7 +861,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../guides/mkdocs_workflow_guide/" class="md-nav__link">
+      <a href="../../guides/mkdocs_workflow_guide/" class="md-nav__link">
         
   
   
@@ -912,152 +900,101 @@
 
 
 
-<h1 id="proxmox-pi-hole-setup-lxc-with-explanations">Proxmox Pi-hole Setup (LXC) – With Explanations<a class="headerlink" href="#proxmox-pi-hole-setup-lxc-with-explanations" title="Permanent link">&para;</a></h1>
-<p><a href="../config_notes/">Back to Pi-hole overview and rationale</a></p>
-<hr />
-<h2 id="1-download-a-base-lxc-template">1. Download a Base LXC Template<a class="headerlink" href="#1-download-a-base-lxc-template" title="Permanent link">&para;</a></h2>
-<p><strong>Proxmox Web UI →</strong> <code>pve1</code> → <code>local</code> → <strong>CT Templates</strong> → <strong>Templates</strong> → Download <strong>Debian 12</strong> or <strong>Ubuntu 22.04</strong></p>
-<p><strong>Why:</strong><br />
-- Minimal, stable, widely supported.
-- Debian is Pi-hole recommended.
-- Needed to create containers.</p>
-<hr />
-<h2 id="2-create-an-lxc-container">2. Create an LXC Container<a class="headerlink" href="#2-create-an-lxc-container" title="Permanent link">&para;</a></h2>
-<p>In the Proxmox Web UI:</p>
+<h1 id="cisco-2960-homelab-switch-setup-ios-upgrade-lan-base-with-ssh">Cisco 2960 Homelab Switch Setup + IOS Upgrade (LAN Base with SSH)<a class="headerlink" href="#cisco-2960-homelab-switch-setup-ios-upgrade-lan-base-with-ssh" title="Permanent link">&para;</a></h1>
+<h2 id="switch-model">Switch Model<a class="headerlink" href="#switch-model" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Unprivileged Container</strong>: ✅ Checked<br />
-<em>Why:</em> Improves security by isolating container root from host root.</li>
-<li><strong>Features &gt; Nesting</strong>: ✅ Checked<br />
-<em>Why:</em> Needed for systemd and services like dnsmasq.</li>
-<li><strong>Disk Size</strong>: 4–8GB (ZFS-backed)</li>
-<li><strong>CPU / RAM</strong>: 1 vCPU, 512MB–1GB RAM</li>
-<li><strong>Network</strong>: DHCP (we'll set static IP later)</li>
-<li><strong>Container Name</strong>: <code>pihole</code></li>
+<li><strong>Device</strong>: Cisco Catalyst 2960 Plus Series (SI)</li>
+<li><strong>Original IOS</strong>: <code>c2960-lanlitek9-mz.152-2.E5.bin</code> (LAN Lite — no SSH support)</li>
+<li><strong>Target IOS</strong>: <code>c2960-lanbasek9-mz.152-7.E12.bin</code> (LAN Base — crypto/SSH support)</li>
 </ul>
 <hr />
-<h2 id="3-set-static-ip-recommended">3. Set Static IP (Recommended)<a class="headerlink" href="#3-set-static-ip-recommended" title="Permanent link">&para;</a></h2>
-<p>Access console:</p>
-<div class="highlight"><pre><span></span><code>pct<span class="w"> </span>console<span class="w"> </span><span class="m">100</span><span class="w">  </span><span class="c1"># Replace 100 with your CT ID</span>
+<h2 id="final-switch-configuration">Final Switch Configuration<a class="headerlink" href="#final-switch-configuration" title="Permanent link">&para;</a></h2>
+<h3 id="user-ssh-access">User + SSH Access<a class="headerlink" href="#user-ssh-access" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>hostname HomelabSwitch
+!
+enable secret YourEnableSecret123
+username admin privilege 15 secret YourSecurePass123
+!
+ip domain-name tkcloudstack
+crypto key generate rsa
+! (Choose 1024 bits)
+ip ssh version 2
+!
+line vty 0 4
+login local
+transport input ssh
+!
+line con 0
+login local
+!
+no ip http server
+no ip http secure-server
+!
+interface vlan 1
+ ip address 192.168.1.10 255.255.255.0
+ no shutdown
+!
+ip default-gateway 192.168.1.1
+!
+interface range fa0/1 - 24
+ no shutdown
+!
+write memory
 </code></pre></div>
-<p>Edit interfaces (Debian example):</p>
-<div class="highlight"><pre><span></span><code>nano<span class="w"> </span>/etc/network/interfaces
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>auto eth0
-iface eth0 inet static
-  address 192.168.79.10
-  netmask 255.255.255.0
-  gateway 192.168.79.1
-  dns-nameservers 1.1.1.1 8.8.8.8
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>reboot
-</code></pre></div>
-<p><strong>Why:</strong><br />
-Avoids DNS failure if Pi-hole’s IP changes.</p>
 <hr />
-<h2 id="4-install-pi-hole">4. Install Pi-hole<a class="headerlink" href="#4-install-pi-hole" title="Permanent link">&para;</a></h2>
-<p>SSH in or use <code>pct exec</code>:</p>
-<div class="highlight"><pre><span></span><code>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt<span class="w"> </span>upgrade<span class="w"> </span>-y
-apt<span class="w"> </span>install<span class="w"> </span>curl<span class="w"> </span>-y
-curl<span class="w"> </span>-sSL<span class="w"> </span>https://install.pi-hole.net<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
-</code></pre></div>
-<p>Follow prompts:
-- Choose <strong>static IP</strong>
-- Choose <strong>DNS provider</strong>
-- Enable blocklists
-- Enable web interface and lighttpd</p>
-<hr />
-<h2 id="5-set-web-ui-password">5. Set Web UI Password<a class="headerlink" href="#5-set-web-ui-password" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>pihole<span class="w"> </span>-a<span class="w"> </span>-p
-</code></pre></div>
-<hr />
-<h2 id="6-access-web-interface">6. Access Web Interface<a class="headerlink" href="#6-access-web-interface" title="Permanent link">&para;</a></h2>
-<p>Visit:
-<div class="highlight"><pre><span></span><code>http://&lt;container-ip&gt;/admin
-</code></pre></div></p>
-<p>Login with the password you set.</p>
-<hr />
-<h2 id="7-configure-router-to-use-pi-hole">7. Configure Router to Use Pi-hole<a class="headerlink" href="#7-configure-router-to-use-pi-hole" title="Permanent link">&para;</a></h2>
-<h3 id="option-a-dhcp-dns">Option A – DHCP DNS:<a class="headerlink" href="#option-a-dhcp-dns" title="Permanent link">&para;</a></h3>
+<h2 id="ios-upgrade-process-summary">🚀 IOS Upgrade Process Summary<a class="headerlink" href="#ios-upgrade-process-summary" title="Permanent link">&para;</a></h2>
+<h3 id="1-download-new-ios">1. ✅ <strong>Download New IOS</strong><a class="headerlink" href="#1-download-new-ios" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Set LAN DNS to <code>192.168.79.10</code></li>
+<li>File used: <code>c2960-lanbasek9-mz.152-7.E12.bin</code></li>
+<li>Placed in: <code>/private/tftpboot/</code> on macOS</li>
 </ul>
-<h3 id="option-b-static-dns-per-device">Option B – Static DNS per device<a class="headerlink" href="#option-b-static-dns-per-device" title="Permanent link">&para;</a></h3>
-<p><strong>Why:</strong><br />
-This routes all network DNS through Pi-hole.</p>
-<hr />
-<h2 id="8-secure-and-harden">8. Secure and Harden<a class="headerlink" href="#8-secure-and-harden" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>apt<span class="w"> </span>install<span class="w"> </span>unattended-upgrades<span class="w"> </span>-y
+<h3 id="2-start-macos-tftp-server">2. 🛠 <strong>Start macOS TFTP Server</strong><a class="headerlink" href="#2-start-macos-tftp-server" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/private/tftpboot
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/private/tftpboot
+sudo<span class="w"> </span>cp<span class="w"> </span>~/Downloads/c2960-lanbasek9-mz.152-7.E12.bin<span class="w"> </span>/private/tftpboot/
+sudo<span class="w"> </span>launchctl<span class="w"> </span>load<span class="w"> </span>-F<span class="w"> </span>/System/Library/LaunchDaemons/tftp.plist
 </code></pre></div>
-<p>Add blocklists, optionally:
-- Back up <code>/etc/pihole/</code>
-- Consider <code>PiVPN</code> if remote access is needed</p>
-<hr />
-<h2 id="9-add-fail2ban-optional">9. Add Fail2Ban (Optional)<a class="headerlink" href="#9-add-fail2ban-optional" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>apt<span class="w"> </span>install<span class="w"> </span>fail2ban<span class="w"> </span>-y
+<h3 id="3-assign-ip-to-switch-enable-ports">3. 📡 <strong>Assign IP to Switch + Enable Ports</strong><a class="headerlink" href="#3-assign-ip-to-switch-enable-ports" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>interface<span class="w"> </span>vlan<span class="w"> </span><span class="m">1</span>
+<span class="w"> </span>ip<span class="w"> </span>address<span class="w"> </span><span class="m">192</span>.168.1.10<span class="w"> </span><span class="m">255</span>.255.255.0
+<span class="w"> </span>no<span class="w"> </span>shutdown
+<span class="nb">exit</span>
+
+interface<span class="w"> </span>range<span class="w"> </span>fa0/1<span class="w"> </span>-<span class="w"> </span><span class="m">24</span>
+<span class="w"> </span>no<span class="w"> </span>shutdown
+<span class="nb">exit</span>
+
+ip<span class="w"> </span>default-gateway<span class="w"> </span><span class="m">192</span>.168.1.1
+</code></pre></div>
+<h3 id="4-transfer-ios-from-mac-to-switch">4. 📤 <strong>Transfer IOS from Mac to Switch</strong><a class="headerlink" href="#4-transfer-ios-from-mac-to-switch" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>copy<span class="w"> </span>tftp:<span class="w"> </span>flash:
+</code></pre></div>
+<ul>
+<li>Remote host: <code>192.168.1.51</code> (Mac IP)</li>
+<li>Source filename: <code>c2960-lanbasek9-mz.152-7.E12.bin</code></li>
+</ul>
+<h3 id="5-set-boot-image">5. 🧭 <strong>Set Boot Image</strong><a class="headerlink" href="#5-set-boot-image" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>configure<span class="w"> </span>terminal
+boot<span class="w"> </span>system<span class="w"> </span>flash:c2960-lanbasek9-mz.152-7.E12.bin
+<span class="nb">exit</span>
+write<span class="w"> </span>memory
+</code></pre></div>
+<h3 id="6-reload-and-verify">6. 🔄 <strong>Reload and Verify</strong><a class="headerlink" href="#6-reload-and-verify" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>reload
+show<span class="w"> </span>version
+show<span class="w"> </span>ip<span class="w"> </span>ssh
 </code></pre></div>
 <hr />
-<h2 id="10-test-pi-hole">10. Test Pi-hole<a class="headerlink" href="#10-test-pi-hole" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>nslookup<span class="w"> </span>google.com<span class="w"> </span><span class="m">192</span>.168.79.10
-</code></pre></div>
-<p>Should reply from Pi-hole.</p>
+<h2 id="post-upgrade-status">✅ Post-Upgrade Status<a class="headerlink" href="#post-upgrade-status" title="Permanent link">&para;</a></h2>
+<ul>
+<li>SSH v2 supported and enabled</li>
+<li>Console + VTY login secured</li>
+<li>Switch reachable at <code>192.168.1.10</code></li>
+<li>VLAN 1 used for management</li>
+<li>Mac-based TFTP workflow confirmed functional</li>
+</ul>
 <hr />
-<h2 id="summary-table">📋 Summary Table<a class="headerlink" href="#summary-table" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Step</th>
-<th>What You Do</th>
-<th>Why You Do It</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Download Template</td>
-<td>Base image needed</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Create LXC</td>
-<td>Lightweight, secure</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Assign Static IP</td>
-<td>DNS reliability</td>
-</tr>
-<tr>
-<td>4</td>
-<td>Install Pi-hole</td>
-<td>Setup DNS blocker</td>
-</tr>
-<tr>
-<td>5</td>
-<td>Set Password</td>
-<td>Secures web UI</td>
-</tr>
-<tr>
-<td>6</td>
-<td>Configure Router</td>
-<td>Routes traffic</td>
-</tr>
-<tr>
-<td>7</td>
-<td>Harden System</td>
-<td>Keeps it updated</td>
-</tr>
-<tr>
-<td>8</td>
-<td>Enable Fail2Ban</td>
-<td>Adds login protection</td>
-</tr>
-<tr>
-<td>9</td>
-<td>Test</td>
-<td>Verifies it works</td>
-</tr>
-</tbody>
-</table>
+<p>Let me know if you'd like a Markdown version or PDF export format for your repo/docs!</p>
 
 
 
@@ -1121,10 +1058,10 @@ This routes all network DNS through Pi-hole.</p>
     
     
       
-      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.sections", "navigation.tabs", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.sections", "navigation.tabs", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
     
   </body>
