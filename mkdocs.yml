@@ -38,6 +38,7 @@ nav:
   - Home: index.md
   - Infrastructure:
       - Proxmox Setup: infrastructure/proxmox_setup.md
+      - Cisco 2960 Switch Setup: infrastructure/cisco2960_setup.md
   - Services:
       - Pi-hole Setup: services/pihole/proxmox_pihole_setup.md
       - Pi-hole Notes: services/pihole/config_notes.md
@@ -49,7 +50,8 @@ nav:
 
 markdown_extensions:
   - admonition
-  - codehilite
+  - codehilite:
+      guess_lang: false
   - footnotes
   - meta
   - toc:
@@ -60,6 +62,9 @@ markdown_extensions:
   - pymdownx.magiclink
   - pymdownx.tasklist:
       custom_checkbox: true
+  - pymdownx.highlight:
+      use_pygments: true
+      linenums: false
 
 extra:
   social:
